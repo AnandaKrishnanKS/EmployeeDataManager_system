@@ -1,8 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 
 function Add() {
+    const[id,setId]=useState(0)
+    const[uName,setuName]=useState('')
+    const[age,setAge]=useState(0)
+    const[desig,setDesig]=useState('')
+    const[salary,setSalary]=useState(0)
+    const[address,setAddress]=useState('')
+
+  function Cancel(){
+    alert('data you entered has been canceled')
+  }
+
+  const addEmployee=(e)=>{
+    console.log(desig);
+  }
+
+  useEffect(()=>{
+    
+  },[])
+   
   return (
-    <div>Add</div>
+    <>
+
+        <div className='bg-light text-center p-3 pt-5'>  
+            <h3 style={{overflow:"hidden"}}><i className="fa-solid fa-user-tie"/>&nbsp;&nbsp;Add New Employee</h3>       
+        </div>
+
+   <Container>
+      <Form className='p-4 pb-0'>
+      <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Name</Form.Label>
+          <Form.Control onChange={(e)=>setuName(e.target.value)} type="text" placeholder="Enter Name" />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Age</Form.Label>
+          <Form.Control onChange={(e)=>setAge(e.target.value)} type="text" placeholder="Enter Age" />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Designation</Form.Label>
+          <Form.Control onChange={(e)=>setDesig(e.target.value)} type="text" placeholder="Enter Designation" />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Salary</Form.Label>
+          <Form.Control onChange={(e)=>setSalary(e.target.value)} type="text" placeholder="Enter Salary" />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+        <Form.Label>&nbsp;Address</Form.Label>
+        <Form.Control onChange={(e)=>setAddress(e.target.value)} placeholder="Enter Address" />
+      </Form.Group>
+        
+        
+      </Form>
+
+      <div className='text-center py-3 mb-5'>
+       <Link to={"/"}> <button onClick={Cancel}  type="submit" className="btn btn-light mx-3 text-danger">Cancel</button></Link>
+        <button onClick={(e)=>addEmployee(e)} type="submit" className="btn btn-success mx-3 text-info ">Submit</button>
+      </div>
+
+   </Container>
+    </>
   )
 }
 

@@ -6,10 +6,12 @@ import Add from './components/Add';
 import Edit from './components/Edit';
 import View from './components/View';
 import PageNotFound from './components/PageNotFound';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <>
+    
     <Routes>
       <Route path='/' element={<Admin/>}></Route>
       <Route path='/add' element={<Add/>}></Route>
@@ -17,6 +19,7 @@ function App() {
       <Route path='/view/:id' element={<View/>}></Route>
       <Route path={'*'} element={<PageNotFound/>}></Route>
     </Routes>
+    <Footer/>
     </>
   );
 }
