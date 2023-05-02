@@ -15,7 +15,17 @@ function Admin() {
       setAllEmployee(result.data.employees)
   }
 
-  console.log(allEmployees);
+  // console.log(allEmployees);
+
+  const deletEmp =async (id)=>{
+   const result = await axios.delete(`http://localhost:8000/deleteEmployee/${id}`)
+   alert(result.data.message)
+
+  //  window.location.reload()
+
+  //fetchdata function is used to reload data
+  fetchdata()
+  }
 
   useEffect(()=>{
     fetchdata()
@@ -78,9 +88,13 @@ function Admin() {
                         <td>
                             <div className=''>
             
+                               <Link to={`/edit/${item.id}`}> 
                                 <button className='btn btn-sm mb-2 me-1 text-black'> &nbsp;Edit </button>
+                               </Link>
+
                                 <button className='btn btn-sm mb-2 me-1 text-black'> View</button>
-                                <button className='btn btn-sm mb-2 me-1 text-black'> Delete</button>
+                                
+                                <button onClick={()=>deletEmp(item.id)} className='btn btn-sm mb-2 me-1 text-black'> Delete</button>
                                 
                             </div>
                         </td>
