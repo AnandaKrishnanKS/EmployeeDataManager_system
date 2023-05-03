@@ -1,12 +1,37 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function Edit() {
 
-  const params= useParams()
+  
 
-  const id=params.id
+       const[id,setId]=useState(0)
+        const[uName,setuName]=useState('')
+        const[age,setAge]=useState(0)
+        const[desig,setDesig]=useState('')
+        const[salary,setSalary]=useState(0)
+        const[address,setAddress]=useState('')
+
+  const params= useParams()
+  
+  // console.log(params.id);
+
+    const fetchData=async ()=>{
+     const result =await axios.get(`http://localhost:8000/viewEmployee/${params.id}`)
+        // console.log(result.data.employee);
+        const data=result.data.employee;
+
+        setId(data.id)
+        setuName(data.uname)
+        setAge(data.age)
+        setDesig(data.designation)
+        setSalary(data.salary) 
+        setAddress(data.address)
+        // console.log(id);
+        // console.log(uName);
+    }
   
 
     //useNavigate is set to an obecjt to use this hook
@@ -20,8 +45,29 @@ function Edit() {
     location("/")
   }
 
-  useEffect(()=>{
+  const updateEmployee=async (e)=>{
 
+    //to prevent looping
+    e.preventDefault()
+
+    const body={
+      id,
+      uName,
+      age,
+      desig,
+      salary,
+      address
+    }
+
+   const result=await axios.post('http://localhost:8000/editEmployee',body)
+
+   alert(result.data.message)
+
+   location("/")
+  }
+
+  useEffect(()=>{
+      fetchData()
   },[])
   
   return (
@@ -35,23 +81,23 @@ function Edit() {
       <Form className='p-4 pb-0'>
       <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Name</Form.Label>
-          <Form.Control  type="text" placeholder="Enter Name" />
+          <Form.Control  type="text" placeholder="Name" onChange={(e)=>setuName(e.target.value)} value={uName} />
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Age</Form.Label>
-          <Form.Control type="text" placeholder="Enter Age" />
+          <Form.Control type="text" placeholder="Age" onChange={(e)=>setAge(e.target.value)} value={age} />
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Designation</Form.Label>
-          <Form.Control  type="text" placeholder="Enter Designation" />
+          <Form.Control  type="text" placeholder="Designation" onChange={(e)=>setDesig(e.target.value)} value={desig}/>
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Salary</Form.Label>
-          <Form.Control type="text" placeholder="Enter Salary" />
+          <Form.Control type="text" placeholder="Salary" onChange={(e)=>setSalary(e.target.value)} value={salary} />
         </Form.Group>
         <Form.Group className="mb-3" >
         <Form.Label>&nbsp;Address</Form.Label>
-        <Form.Control placeholder="Enter Address" />
+        <Form.Control placeholder="Address" onChange={(e)=>setAddress(e.target.value)} value={address} />
       </Form.Group>
         
         
@@ -60,7 +106,7 @@ function Edit() {
       <div className='text-center py-3 mb-5'>
        <Link to={"/"}> <button type="button" className="btn mx-2 ">Back</button></Link>
        <button onClick={Cancel}  type="submit" className="btn btn-light mx-2 text-danger">Cancel</button>
-        <button  type="submit" className="btn btn-success mx-2 text-info ">Update</button>
+        <button onClick={(e)=>updateEmployee(e)} type="submit" className="btn btn-success mx-2 text-info ">Update</button>
       </div>
 
    </Container>

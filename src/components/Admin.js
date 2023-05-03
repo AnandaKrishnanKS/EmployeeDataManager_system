@@ -49,7 +49,7 @@ function Admin() {
                     <input className="serchbox ps-3 py-2" type="search" placeholder="search employee" />
                     <button className="btn btn-sm " type="submit">
                       <div className='m-1 ms-0 mb-0'>
-                      <i class="fa-solid fa-magnifying-glass fs-5"></i>
+                      <i className="fa-solid fa-magnifying-glass fs-5"></i>
                       </div>
                     </button>
                   </ButtonGroup>
@@ -83,10 +83,10 @@ function Admin() {
                         <td>{item.age}</td>
                         <td>{item.designation}</td>
                         <td>{item.salary} &nbsp;&nbsp;
-                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
                         </td>
                         <td>
-                            <div className=''>
+                            <div>
             
                                <Link to={`/edit/${item.id}`}> 
                                 <button className='btn btn-sm mb-2 me-1 text-black'> &nbsp;Edit </button>

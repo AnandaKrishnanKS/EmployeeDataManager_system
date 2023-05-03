@@ -16,8 +16,8 @@ function Footer() {
           <span style={{display:"flex",alignItems:"center",justifyContent:"end"}}>
             follow me on
             &nbsp;&nbsp;<a href='...'><i className="fa-brands fa-instagram fs-5 text-primary"></i></a>
-            &nbsp;&nbsp;<a href='...'><i class="fa-brands fa-github fs-5 text-primary"></i></a>
-            &nbsp;&nbsp;<a href='...'><i class="fa-brands fa-linkedin-in fs-5 text-primary"></i></a>
+            &nbsp;&nbsp;<a href='...'><i className="fa-brands fa-github fs-5 text-primary"></i></a>
+            &nbsp;&nbsp;<a href='...'><i className="fa-brands fa-linkedin-in fs-5 text-primary"></i></a>
           </span>
         </p>
 
