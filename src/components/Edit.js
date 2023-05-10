@@ -13,6 +13,11 @@ function Edit() {
         const[desig,setDesig]=useState('')
         const[salary,setSalary]=useState(0)
         const[address,setAddress]=useState('')
+        const[teamNo,setTeamNo]=useState(0)
+        const[teamId,setTeamId]=useState(0)
+        const[phoneNo,setPhoneNO]=useState(0)
+        const[email,setEmail]=useState('')
+        const[image,setImage]=useState('')
 
   const params= useParams()
   
@@ -29,6 +34,11 @@ function Edit() {
         setDesig(data.designation)
         setSalary(data.salary) 
         setAddress(data.address)
+        setTeamNo(data.teamNo)
+        setTeamId(data.teamId)
+        setPhoneNO(data.phoneNo)
+        setEmail(data.email)
+        setImage(data.image)
         // console.log(id);
         // console.log(uName);
     }
@@ -56,7 +66,12 @@ function Edit() {
       age,
       desig,
       salary,
-      address
+      address,
+      teamNo,
+      teamId,
+      phoneNo,
+      email,
+      image
     }
 
    const result=await axios.post('http://localhost:8000/editEmployee',body)
@@ -84,6 +99,10 @@ function Edit() {
           <Form.Control  type="text" placeholder="Name" onChange={(e)=>setuName(e.target.value)} value={uName} />
         </Form.Group>
         <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Image Url</Form.Label>
+          <Form.Control  type="text" placeholder="image Url" onChange={(e)=>setImage(e.target.value)} value={image} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Age</Form.Label>
           <Form.Control type="text" placeholder="Age" onChange={(e)=>setAge(e.target.value)} value={age} />
         </Form.Group>
@@ -92,8 +111,24 @@ function Edit() {
           <Form.Control  type="text" placeholder="Designation" onChange={(e)=>setDesig(e.target.value)} value={desig}/>
         </Form.Group>
         <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Team Name</Form.Label>
+          <Form.Control  type="text" placeholder="Team Name" onChange={(e)=>setTeamNo(e.target.value)} value={teamNo}/>
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Team Id</Form.Label>
+          <Form.Control  type="text" placeholder="Team Id" onChange={(e)=>setTeamId(e.target.value)} value={teamId}/>
+        </Form.Group>
+        <Form.Group className="mb-3" >
           <Form.Label>&nbsp;Salary</Form.Label>
           <Form.Control type="text" placeholder="Salary" onChange={(e)=>setSalary(e.target.value)} value={salary} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Phone Number</Form.Label>
+          <Form.Control type="text" placeholder="Phone Number" onChange={(e)=>setPhoneNO(e.target.value)} value={phoneNo} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>&nbsp;Email id</Form.Label>
+          <Form.Control type="text" placeholder="Email id" onChange={(e)=>setEmail(e.target.value)} value={email} />
         </Form.Group>
         <Form.Group className="mb-3" >
         <Form.Label>&nbsp;Address</Form.Label>

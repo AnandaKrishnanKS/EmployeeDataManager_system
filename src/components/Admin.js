@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 function Admin() {
 
+
+  // state for all employee data
   const [allEmployees,setAllEmployee]=useState([])
 
   const fetchdata = async()=>{
@@ -27,6 +29,11 @@ function Admin() {
   fetchdata()
   }
 
+   //state for search query
+   const [query,setQuery]=useState('')
+  //  console.log(allEmployees.filter(emp=>emp.uname.includes(query)));
+
+  
   useEffect(()=>{
     fetchdata()
   },[])
@@ -46,7 +53,7 @@ function Admin() {
               <div className='text-end me-4'>   
 
                   <ButtonGroup className='me-3'>
-                    <input className="serchbox ps-3 py-2" type="search" placeholder="search employee" />
+                    <input onChange={(e)=>setQuery(e.target.value)} className="serchbox ps-3 py-2" type="search" placeholder="search employee" />
                     <button className="btn btn-sm " type="submit">
                       <div className='m-1 ms-0 mb-0'>
                       <i className="fa-solid fa-magnifying-glass fs-5"></i>
@@ -66,33 +73,34 @@ function Admin() {
                     <tr className='text-white bg-primary text-center'>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Age</th>
+                    <th>Team Name</th>
+                    <th>Team Id</th>
                     <th>Designation</th>
-                    <th>Salary</th>
                     <th>Action</th>
                     </tr>
                 </thead>
 
                 {
-                  allEmployees.map((item,index)=>(
+                  allEmployees.filter(item=>item.uname.toLowerCase().includes(query) ||
+                                            item.designation.toLowerCase().includes(query) 
+                                     ).map((item,index)=>(
 
                     <tbody className='tablebrdr bg-light text-dark'>
-                    <tr className=' text-center '>
+                    <tr  className=' text-center '>
                         <td>{index+1}</td>
                         <td>{item.uname}</td>
-                        <td>{item.age}</td>
-                        <td>{item.designation}</td>
-                        <td>{item.salary} &nbsp;&nbsp;
-                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                        </td>
+                        <td>{item.teamNo}</td>
+                        <td>{item.teamId}</td>
+                        <td>{item.designation} &nbsp;&nbsp;</td>
                         <td>
                             <div>
             
                                <Link to={`/edit/${item.id}`}> 
                                 <button className='btn btn-sm mb-2 me-1 text-black'> &nbsp;Edit </button>
                                </Link>
+                               
 
-                                <button className='btn btn-sm mb-2 me-1 text-black'> View</button>
+                               <Link to={`/view/${item.id}`} style={{textDecoration:"none"}}> <button  className='btn btn-sm mb-2 me-1 text-black'> View</button></Link>
                                 
                                 <button onClick={()=>deletEmp(item.id)} className='btn btn-sm mb-2 me-1 text-black'> Delete</button>
                                 

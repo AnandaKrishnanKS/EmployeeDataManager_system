@@ -6,9 +6,13 @@ function Footer() {
 
       <div className='bg-dark pt-3 px-5'>
 
-        <p className='text-center'>
-          <a className='text-primary' href='...' >need help?</a>
-        </p>
+        <p className='text-center text-light'>  need help? 
+       
+        <a className='text-success' href='https://wa.me/8921690599' target="_blank"
+           style={{display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none"}}>
+                contact us on &nbsp; 
+                   <i className="fa-brands fa-whatsapp"></i></a></p>
+        
         <p className='text-end' >
           No rights reserved ha haa ... to get code click
           <a className='text-primary' href='https://github.com/AnandaKrishnanKS/EmployeeDataManager_system'> here</a>
